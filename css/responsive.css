@@ -40,7 +40,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: var(--color-bg-primary);
+    /* background-color: var(--color-bg-primary); */
     transform: translateX(-100%);
     transition: transform var(--transition-base);
     z-index: 999;
@@ -111,6 +111,18 @@
 
 /* Mobile */
 @media (max-width: 576px) {
+
+
+  .hero {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    will-change: background-position;
+  }
   :root {
     --font-size-h1: 48px;
     --font-size-h2: 32px;
@@ -127,8 +139,14 @@
   }
 
   .btn {
-    padding: var(--spacing-sm) var(--spacing-lg);
-    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs) var(--spacing-md);
+    /* font-size: var(--font-size-xs); */
+  }
+
+  .hero__bike  {
+    top: 50%;
+    width: 870px;
+    transform: translate(-50%, -50%);
   }
 
   .feature-card__title {
@@ -169,6 +187,8 @@
     --font-size-h1: 36px;
     --font-size-base: 14px;
   }
+
+ 
 
   .hero__subtitle {
     font-size: 14px;

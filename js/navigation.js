@@ -92,9 +92,9 @@ class Navigation {
   
   handleHeaderScroll() {
     if (window.scrollY > 100) {
-      this.header.style.backgroundColor = 'rgba(13, 13, 13, 0.98)';
+      this.header.style.backgroundColor = 'transparent';
     } else {
-      this.header.style.backgroundColor = 'rgba(13, 13, 13, 0.95)';
+      this.header.style.backgroundColor = 'transparent';
     }
   }
 }

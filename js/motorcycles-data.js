@@ -276,7 +276,10 @@ const motorcyclesData = [
     images: [
       "images/bikes/bike-10/main.jpg",
       "images/bikes/bike-10/side.jpg",
-      "images/bikes/bike-10/detail-1.jpg"
+      "images/bikes/bike-10/detail-1.jpg",
+      "images/bikes/bike-10/detail-2.jpg",
+      "images/bikes/bike-10/detail-3.jpg",
+      "images/bikes/bike-10/detail-4.jpg"
     ],
     specs: {
       engine: "1923cc Milwaukee-Eight 117",
