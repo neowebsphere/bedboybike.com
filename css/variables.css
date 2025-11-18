@@ -1,15 +1,43 @@
-.eb-garamond-regular {
-  font-family: 'EB Garamond', serif;
-  font-optical-sizing: auto;
+
+@font-face {
+  font-family: 'BlockGothic';
+  src: url('./fonts/Block-Gothic-RR-Bold-Extra-Condensed.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'AmericanCaptain';
+  src: url('./fonts/AmericanCaptain.ttf') format('truetype');
+  font-weight: 700;
+  font-style: bold;
+}
 
 @font-face {
-  font-family: 'EB Garamond';
-  src: url('../fonts/EB_Garamond/EBGaramond-Regular.ttf') format('truetype');
+  font-family: 'LT-Amber';
+  src: url('./fonts/LT-Amber-Regular.otf') format('truetype');
   font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LT-Amber-Light';
+  src: url('./fonts/LT-Amber-Light.otf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LT-Amber-Wide-Bold';
+  src: url('./fonts/LT-Amber-Wide-Bold.otf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LT-Amber-Ext-Bold';
+  src: url('./fonts/LT-Amber-Ext-Bold.otf') format('truetype');
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -30,7 +58,12 @@
 
   /* Typography */
   --font-primary: 'Arial', 'Helvetica', sans-serif;
-  --font-heading: 'EB Garamond', serif;
+  --font-heading: 'BlockGothic', serif;
+  --font-heading-secondary: 'AmericanCaptain', serif;
+  --font-heading-tertiary: 'LT-Amber', serif;
+  --font-heading-quaternary: 'LT-Amber-Light', serif;
+  --font-heading-quinary: 'LT-Amber-Wide-Bold', serif;
+  --font-heading-senary: 'LT-Amber-Ext-Bold', serif;
 
   --font-size-base: 1rem;
   --font-size-sm: 0.875rem;

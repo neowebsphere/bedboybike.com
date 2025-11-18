@@ -10,9 +10,12 @@ class BikeModal {
     this.modalDescription = document.getElementById('modalDescription');
     this.modalSpecs = document.getElementById('modalSpecs');
     this.modalModifications = document.getElementById('modalModifications');
+    this.modalGallery = document.getElementById('modalGallery');
     
     this.currentBike = null;
     this.currentImageIndex = 0;
+    this.viewMode = 'standard'; // 'standard' or '360'
+    this.viewer360 = null;
     
     this.init();
   }
@@ -60,6 +63,13 @@ class BikeModal {
   close() {
     this.modal.classList.remove('active');
     document.body.style.overflow = '';
+    
+    // Cleanup 360 viewer if active
+    if (this.viewer360) {
+      this.viewer360.destroy();
+      this.viewer360 = null;
+    }
+    this.viewMode = 'standard';
   }
   
   renderModalContent() {
@@ -84,11 +94,115 @@ class BikeModal {
     // Render thumbnails
     this.renderThumbnails();
     
+    // Add 360° view toggle button
+    this.add360ViewButton();
+    
     // Render specifications
     this.renderSpecs();
     
     // Render modifications
     this.renderModifications();
+  }
+  
+  add360ViewButton() {
+    // Check if button already exists
+    let viewToggle = this.modalGallery.querySelector('.view-toggle-btn');
+    
+    if (!viewToggle) {
+      viewToggle = document.createElement('button');
+      viewToggle.className = 'btn btn--360 view-toggle-btn';
+      viewToggle.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+        </svg>
+        360° View
+      `;
+      
+      viewToggle.addEventListener('click', () => this.toggle360View());
+      
+      // Insert after thumbnails
+      this.modalThumbnails.parentNode.insertBefore(viewToggle, this.modalThumbnails.nextSibling);
+    }
+  }
+  
+  toggle360View() {
+    if (this.viewMode === 'standard') {
+      this.show360View();
+    } else {
+      this.showStandardView();
+    }
+  }
+  
+  show360View() {
+    this.viewMode = '360';
+    
+    // Hide standard gallery elements
+    const mainImageWrapper = this.modalMainImage.parentElement;
+    mainImageWrapper.style.display = 'none';
+    this.modalThumbnails.style.display = 'none';
+    
+    // Create 360 viewer container if it doesn't exist
+    let viewer360Container = document.getElementById('viewer360Container');
+    if (!viewer360Container) {
+      viewer360Container = document.createElement('div');
+      viewer360Container.id = 'viewer360Container';
+      viewer360Container.style.width = '100%';
+      viewer360Container.style.height = '100%';
+      viewer360Container.style.minHeight = '500px';
+      mainImageWrapper.parentNode.insertBefore(viewer360Container, mainImageWrapper);
+    } else {
+      viewer360Container.style.display = 'block';
+    }
+    
+    // Initialize 360 viewer
+    if (this.currentBike.images && this.currentBike.images.length > 0) {
+      this.viewer360 = new Viewer360('viewer360Container', this.currentBike.images);
+    }
+    
+    // Update button text
+    const viewToggleBtn = this.modalGallery.querySelector('.view-toggle-btn');
+    if (viewToggleBtn) {
+      viewToggleBtn.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        Standard View
+      `;
+    }
+  }
+  
+  showStandardView() {
+    this.viewMode = 'standard';
+    
+    // Cleanup 360 viewer
+    if (this.viewer360) {
+      this.viewer360.destroy();
+      this.viewer360 = null;
+    }
+    
+    // Hide 360 container
+    const viewer360Container = document.getElementById('viewer360Container');
+    if (viewer360Container) {
+      viewer360Container.style.display = 'none';
+    }
+    
+    // Show standard gallery
+    const mainImageWrapper = this.modalMainImage.parentElement;
+    mainImageWrapper.style.display = 'block';
+    this.modalThumbnails.style.display = 'flex';
+    
+    // Update button text
+    const viewToggleBtn = this.modalGallery.querySelector('.view-toggle-btn');
+    if (viewToggleBtn) {
+      viewToggleBtn.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+        </svg>
+        360° View
+      `;
+    }
   }
   
   renderThumbnails() {

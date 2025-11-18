@@ -179,6 +179,74 @@
     grid-template-columns: 100px 1fr;
     font-size: 12px;
   }
+
+  /* 360 Viewer */
+  .viewer-360 {
+    min-height: 25rem;
+  }
+
+  .viewer-360__controls {
+    bottom: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-md);
+    gap: var(--spacing-xs);
+    max-width: 95%;
+    flex-wrap: wrap;
+  }
+
+  .viewer-360__control-group {
+    padding: 0 var(--spacing-xs);
+    gap: var(--spacing-xs);
+  }
+
+  .viewer-360__btn {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .viewer-360__btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .viewer-360__hint {
+    padding: var(--spacing-md);
+  }
+
+  .viewer-360__hint svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .viewer-360__hint p {
+    font-size: var(--font-size-sm);
+  }
+
+  .viewer-360__counter {
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    font-size: 10px;
+    padding: 4px 10px;
+  }
+
+  .viewer-360__zoom-indicator {
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    font-size: 10px;
+    padding: 4px 10px;
+  }
+
+  .btn--360 {
+    font-size: var(--font-size-sm);
+  }
+
+  .btn--360 svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .viewer-360__keyboard-hint {
+    display: none;
+  }
 }
 
 /* Extra small devices */
