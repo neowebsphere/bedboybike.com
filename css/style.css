@@ -324,14 +324,14 @@ html {
   text-align: center;
 }
 
-.section-title {
-  font-size: var(--font-size-h2);
+.about__title {
+  font-size: 4rem;
   margin-bottom: var(--spacing-xl);
   text-transform: uppercase;
 }
 
-.about__text {
-  font-size: var(--font-size-lg);
+.about__text { 
+  font-size: var(--font-size-xl);
   line-height: 1.8;
   color: var(--color-text-light);
   margin-bottom: var(--spacing-md);

@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: badboybike-website-dev
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    volumes:
+      # Mount current directory for live reload
+      - .:/app
+    restart: unless-stopped
+
