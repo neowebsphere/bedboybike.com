@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Bad Boy Bike Customizer - Design your dream Harley-Davidson custom bike in real-time 3D"
+    />
+    <title>Bike Customizer | Bad Boy Bike</title>
+
+    <!-- Stylesheets -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/customizer.css" />
+  </head>
+  <body>
+    <!-- CYBER GRID BACKGROUND -->
+    <div class="cyber-grid"></div>
+    <div class="scan-line"></div>
+
+    <!-- HEADER -->
+    <header class="header header--customizer">
+      <div class="container">
+        <div class="header__container">
+          <a href="index.html" class="logo">
+            <span class="logo__text">BAD</span>
+            <span class="logo__text">BOY</span>
+            <span class="logo__text">BIKE</span>
+          </a>
+
+          <nav class="nav">
+            <ul class="nav__list">
+              <li><a href="index.html" class="nav__link">HOME</a></li>
+              <li><a href="index.html#about" class="nav__link">ABOUT</a></li>
+              <li><a href="#" class="nav__link active">CUSTOMIZER</a></li>
+              <li>
+                <a href="index.html#contact" class="nav__link">CONTACT</a>
+              </li>
+            </ul>
+          </nav>
+
+          <button
+            class="nav-toggle"
+            id="navToggle"
+            aria-label="Toggle navigation"
+          >
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CUSTOMIZER -->
+    <main class="customizer">
+      <!-- LEFT PANEL - PARTS SELECTOR -->
+      <aside class="parts-panel">
+        <div class="parts-panel__header">
+          <h2 class="parts-panel__title">
+            <span class="glow-text">PARTS</span>
+            <span class="parts-panel__subtitle">SELECT & CUSTOMIZE</span>
+          </h2>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+          <button class="category-tab active" data-category="frame">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+              <path d="M2 12l10 5 10-5" />
+            </svg>
+            <span>Frame</span>
+          </button>
+          <button class="category-tab" data-category="exhaust">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M4 12h16" />
+              <path d="M4 6h16" />
+              <circle cx="20" cy="12" r="2" />
+            </svg>
+            <span>Exhaust</span>
+          </button>
+          <button class="category-tab" data-category="wheels">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+            </svg>
+            <span>Wheels</span>
+          </button>
+          <button class="category-tab" data-category="handlebars">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M4 12c0-4 4-8 8-8s8 4 8 8" />
+              <circle cx="4" cy="12" r="2" />
+              <circle cx="20" cy="12" r="2" />
+            </svg>
+            <span>Bars</span>
+          </button>
+          <button class="category-tab" data-category="seat">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M4 18h16" />
+              <ellipse cx="12" cy="14" rx="8" ry="4" />
+            </svg>
+            <span>Seat</span>
+          </button>
+          <button class="category-tab" data-category="paint">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z"
+              />
+              <path d="M3 9h18" />
+            </svg>
+            <span>Paint</span>
+          </button>
+        </div>
+
+        <!-- Parts List -->
+        <div class="parts-list" id="partsList">
+          <!-- Parts will be dynamically loaded here -->
+        </div>
+
+        <!-- Price Summary -->
+        <div class="price-summary">
+          <div class="price-summary__row">
+            <span>Base Price</span>
+            <span class="price-value" id="basePrice">$18,500</span>
+          </div>
+          <div class="price-summary__row">
+            <span>Modifications</span>
+            <span class="price-value price-value--accent" id="modsPrice"
+              >+$0</span
+            >
+          </div>
+          <div class="price-summary__divider"></div>
+          <div class="price-summary__row price-summary__row--total">
+            <span>Total</span>
+            <span class="price-value price-value--total" id="totalPrice"
+              >$18,500</span
+            >
+          </div>
+        </div>
+      </aside>
+
+      <!-- CENTER - BIKE VIEWER -->
+      <section class="bike-viewer">
+        <!-- Status HUD -->
+        <div class="hud-overlay">
+          <div class="hud-corner hud-corner--tl"></div>
+          <div class="hud-corner hud-corner--tr"></div>
+          <div class="hud-corner hud-corner--bl"></div>
+          <div class="hud-corner hud-corner--br"></div>
+        </div>
+
+        <div class="bike-viewer__title-bar">
+          <h1 class="bike-viewer__title">
+            <span class="bike-viewer__model" id="bikeModel"
+              >HARLEY-DAVIDSON V-ROD</span
+            >
+            <span class="bike-viewer__name" id="bikeName"
+              >CUSTOM BUILD #001</span
+            >
+          </h1>
+          <div class="viewer-stats">
+            <div class="stat">
+              <span class="stat__label">POWER</span>
+              <span class="stat__value" id="statPower">125 HP</span>
+            </div>
+            <div class="stat">
+              <span class="stat__label">TORQUE</span>
+              <span class="stat__value" id="statTorque">85 lb-ft</span>
+            </div>
+            <div class="stat">
+              <span class="stat__label">WEIGHT</span>
+              <span class="stat__value" id="statWeight">295 kg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Bike Canvas -->
+        <div class="bike-canvas" id="bikeCanvas">
+          <div class="bike-stage" id="bikeStage">
+            <!-- Bike Layers -->
+            <div class="bike-layer bike-layer--shadow" id="bikeShadow"></div>
+            <div class="bike-layer bike-layer--base" id="bikeBase">
+              <img
+                src="images/bike.png"
+                alt="Custom Bike Base"
+                id="bikeImage"
+              />
+            </div>
+            <div class="bike-layer bike-layer--exhaust" id="layerExhaust"></div>
+            <div class="bike-layer bike-layer--wheels" id="layerWheels"></div>
+            <div
+              class="bike-layer bike-layer--handlebars"
+              id="layerHandlebars"
+            ></div>
+            <div class="bike-layer bike-layer--seat" id="layerSeat"></div>
+            <div class="bike-layer bike-layer--paint" id="layerPaint"></div>
+            <div class="bike-layer bike-layer--effects" id="layerEffects"></div>
+          </div>
+
+          <!-- Rotation Ring -->
+          <div class="rotation-ring">
+            <div class="rotation-ring__track"></div>
+            <div class="rotation-ring__indicator" id="rotationIndicator"></div>
+          </div>
+
+          <!-- Drag Hint -->
+          <div class="drag-hint" id="dragHint">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <path
+                d="M8 24h32M8 24l8-8M8 24l8 8M40 24l-8-8M40 24l-8 8"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <span>DRAG TO ROTATE</span>
+          </div>
+        </div>
+
+        <!-- Viewer Controls -->
+        <div class="viewer-controls">
+          <button class="viewer-btn" id="btnRotateLeft" title="Rotate Left">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button class="viewer-btn" id="btnAutoRotate" title="Auto Rotate">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M23 4v6h-6" />
+              <path d="M1 20v-6h6" />
+              <path
+                d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"
+              />
+            </svg>
+          </button>
+          <button class="viewer-btn" id="btnRotateRight" title="Rotate Right">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+          <div class="viewer-controls__divider"></div>
+          <button class="viewer-btn" id="btnZoomOut" title="Zoom Out">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              <line x1="8" y1="11" x2="14" y2="11" />
+            </svg>
+          </button>
+          <button class="viewer-btn" id="btnZoomIn" title="Zoom In">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              <line x1="11" y1="8" x2="11" y2="14" />
+              <line x1="8" y1="11" x2="14" y2="11" />
+            </svg>
+          </button>
+          <button class="viewer-btn" id="btnReset" title="Reset View">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8" />
+              <path d="M3 3v5h5" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL - BUILD INFO -->
+      <aside class="build-panel">
+        <div class="build-panel__header">
+          <h2 class="build-panel__title">
+            <span class="glow-text">YOUR BUILD</span>
+            <span class="build-panel__subtitle">CONFIGURATION</span>
+          </h2>
+        </div>
+
+        <!-- Selected Parts List -->
+        <div class="selected-parts" id="selectedParts">
+          <div class="selected-part">
+            <span class="selected-part__category">FRAME</span>
+            <span class="selected-part__name">Stock V-Rod Frame</span>
+          </div>
+          <div class="selected-part">
+            <span class="selected-part__category">EXHAUST</span>
+            <span class="selected-part__name">--</span>
+          </div>
+          <div class="selected-part">
+            <span class="selected-part__category">WHEELS</span>
+            <span class="selected-part__name">--</span>
+          </div>
+          <div class="selected-part">
+            <span class="selected-part__category">HANDLEBARS</span>
+            <span class="selected-part__name">--</span>
+          </div>
+          <div class="selected-part">
+            <span class="selected-part__category">SEAT</span>
+            <span class="selected-part__name">--</span>
+          </div>
+          <div class="selected-part">
+            <span class="selected-part__category">PAINT</span>
+            <span class="selected-part__name">--</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="build-actions">
+          <button class="action-btn action-btn--primary" id="btnSaveBuild">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"
+              />
+              <polyline points="17,21 17,13 7,13 7,21" />
+              <polyline points="7,3 7,8 15,8" />
+            </svg>
+            SAVE BUILD
+          </button>
+          <button class="action-btn action-btn--secondary" id="btnShareBuild">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+            </svg>
+            SHARE
+          </button>
+          <button class="action-btn action-btn--accent" id="btnRequestQuote">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+              <polyline points="7,10 12,15 17,10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            REQUEST QUOTE
+          </button>
+        </div>
+
+        <!-- Quick Presets -->
+        <div class="presets-section">
+          <h3 class="presets-title">QUICK PRESETS</h3>
+          <div class="presets-grid">
+            <button class="preset-btn" data-preset="blacked-out">
+              <span class="preset-preview preset-preview--black"></span>
+              <span class="preset-name">Blacked Out</span>
+            </button>
+            <button class="preset-btn" data-preset="chrome-king">
+              <span class="preset-preview preset-preview--chrome"></span>
+              <span class="preset-name">Chrome King</span>
+            </button>
+            <button class="preset-btn" data-preset="racing">
+              <span class="preset-preview preset-preview--racing"></span>
+              <span class="preset-name">Racing</span>
+            </button>
+            <button class="preset-btn" data-preset="vintage">
+              <span class="preset-preview preset-preview--vintage"></span>
+              <span class="preset-name">Vintage</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- NOTIFICATION TOAST -->
+    <div class="toast" id="toast">
+      <div class="toast__icon">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+          <polyline points="22,4 12,14.01 9,11.01" />
+        </svg>
+      </div>
+      <span class="toast__message" id="toastMessage">Part applied!</span>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+      <div class="container contact__container">
+        <div class="contact__header">
+          <h2 class="section-title">Get In Touch</h2>
+          <p class="about__text">
+            Ready to start your custom build? Contact us today.
+          </p>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-input"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="tel" id="phone" name="phone" class="form-input" />
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              class="form-textarea"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary form-submit">
+            SEND MESSAGE
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__container">
+          <div class="footer__section">
+            <h3 class="footer__section-title">BAD BOY BIKE</h3>
+            <p class="footer__text">
+              Custom Harley-Davidson shop<br />
+              Building dreams since 2010
+            </p>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__section-title">Quick Links</h3>
+            <nav>
+              <ul>
+                <li><a href="#home" class="footer__link">Home</a></li>
+                <li><a href="#about" class="footer__link">About</a></li>
+                <li>
+                  <a href="customizer.html" class="footer__link">Customizer</a>
+                </li>
+                <li><a href="#contact" class="footer__link">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="footer__section">
+            <h3 class="footer__section-title">Follow Us</h3>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook">FB</a>
+              <a href="#" class="social-link" aria-label="Instagram">IG</a>
+              <a href="#" class="social-link" aria-label="YouTube">YT</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p>&copy; 2025 Bad Boy Bike. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/customizer.js"></script>
+  </body>
+</html>
