@@ -1,4 +1,4 @@
-# Bad Boy Bike - Harley-Davidson Custom Shop Website
+# Bad Boy Bike - Harley-Davidson Custom Shop Website https://badboybike.com
 
 A modern, responsive website for a custom Harley-Davidson motorcycle shop featuring a dark premium design, interactive gallery, and detailed bike showcase.
 
@@ -300,5 +300,6 @@ For questions or issues, please open an issue in the repository.
 ---
 
 **Built with ❤️ for custom motorcycle enthusiasts**
+
 # bedboybike.com
 # bedboybike.com
